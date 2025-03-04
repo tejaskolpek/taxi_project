@@ -1,0 +1,20 @@
+[project]
+name = "project1"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Tejas Kolpek",email = "tejasgop@buffalo.edu"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "hopsworks"
+]
+
+[tool.poetry]
+packages = [{include = "project1", from = "src"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
