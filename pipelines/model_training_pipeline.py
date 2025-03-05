@@ -22,7 +22,7 @@ print(f"Transforming to ts_data ...")
 
 
 features, targets = transform_ts_data_info_features_and_target(
-    ts_data, window_size=24 * 28, step_size=23
+    ts_data, window_size=24 * 28, step_size=12
 )
 #####
 from hsml.schema import Schema
