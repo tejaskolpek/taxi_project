@@ -27,6 +27,11 @@ features, targets = transform_ts_data_info_features_and_target(
 #####
 from hsml.schema import Schema
 from hsml.model_schema import ModelSchema
+import hopsworks
+
+project = hopsworks.login(
+    project=config.HOPSWORKS_PROJECT_NAME, api_key_value=config.HOPSWORKS_API_KEY
+)
 
 input_schema = Schema(features)
 output_schema = Schema(targets)
