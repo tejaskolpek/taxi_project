@@ -23,25 +23,21 @@ print(f"Fetching data from {fetch_data_from} to {fetch_data_to}")
 #     name=config.FEATURE_VIEW_NAME, version=config.FEATURE_VIEW_VERSION,
 # )
 
-try:
+
     feature_store.create_feature_view(
         name=config.FEATURE_VIEW_NAME,
         version=config.FEATURE_VIEW_VERSION,
         query=feature_group.select_all(),
     )
-    print(f"Feature view '{config.FEATURE_VIEW_NAME}' (version {config.FEATURE_VIEW_VERSION}) created successfully.")
-except Exception as e:
-    print(f"Error creating feature view: {e}")
+   
 
 # Retrieve the feature view
-try:
+
     feature_view = feature_store.get_feature_view(
         name=config.FEATURE_VIEW_NAME,
         version=config.FEATURE_VIEW_VERSION,
     )
-    print(f"Feature view '{config.FEATURE_VIEW_NAME}' (version {config.FEATURE_VIEW_VERSION}) retrieved successfully.")
-except Exception as e:
-    print(f"Error retrieving feature view: {e}")
+
 
 ts_data = feature_view.get_batch_data(
     start_time=(fetch_data_from - timedelta(days=1)),
