@@ -19,7 +19,7 @@ feature_store = get_feature_store()
 fetch_data_to = current_date - timedelta(hours=1)
 fetch_data_from = current_date - timedelta(days=1 * 29)
 print(f"Fetching data from {fetch_data_from} to {fetch_data_to}")
-feature_view = feature_store.get_or_create_feature_view(
+feature_view = feature_store.get_feature_view(
     name=config.FEATURE_VIEW_NAME, version=config.FEATURE_VIEW_VERSION,
 )
 
