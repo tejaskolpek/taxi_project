@@ -57,9 +57,12 @@ logger.info("Connected to the feature store.")
 logger.info(
     f"Connecting to the feature group: {config.FEATURE_GROUP_NAME} (version {config.FEATURE_GROUP_VERSION})..."
 )
-feature_group = feature_store.get_feature_group(
+feature_group = feature_store.get_or_create_feature_group(
     name=config.FEATURE_GROUP_NAME,
     version=config.FEATURE_GROUP_VERSION,
+    primary_key=["pickup_location_id", "pickup_hour"]
+    event_time=["pickup_hour"]
+    
 )
 logger.info("Feature group ready.")
 
