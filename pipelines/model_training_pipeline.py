@@ -18,9 +18,30 @@ ts_data = fetch_days_data(180)
 
 print(f"Transforming to ts_data ...")
 
+
+model.save('../models/lgb_model.pkl') 
+
 features, targets = transform_ts_data_info_features_and_target(
     ts_data, window_size=24 * 28, step_size=23
 )
+#####
+from hsml.schema import Schema
+from hsml.model_schema import ModelSchema
+
+input_schema = Schema(features)
+output_schema = Schema(targets)
+model_schema = ModelSchema(input_schema=input_schema, output_schema=output_schema)
+
+model_registry = project.get_model_registry()
+
+model = model_registry.sklearn.create_model(
+    name="taxi_demand_predictor_next_hour",
+    metrics={"test_mae": test_mae},
+    description="LightGBM regressor",
+    input_example=features.sample(),
+    model_schema=model_schema
+)
+#######
 pipeline = get_pipeline()
 print(f"Training model ...")
 
