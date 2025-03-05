@@ -24,19 +24,19 @@ print(f"Fetching data from {fetch_data_from} to {fetch_data_to}")
 # )
 
 
-    feature_store.create_feature_view(
-        name=config.FEATURE_VIEW_NAME,
-        version=config.FEATURE_VIEW_VERSION,
-        query=feature_group.select_all(),
-    )
+feature_store.create_feature_view(
+    name=config.FEATURE_VIEW_NAME,
+    version=config.FEATURE_VIEW_VERSION,
+    query=feature_group.select_all(),
+)
    
 
 # Retrieve the feature view
 
-    feature_view = feature_store.get_feature_view(
-        name=config.FEATURE_VIEW_NAME,
-        version=config.FEATURE_VIEW_VERSION,
-    )
+feature_view = feature_store.get_feature_view(
+    name=config.FEATURE_VIEW_NAME,
+    version=config.FEATURE_VIEW_VERSION,
+)
 
 
 ts_data = feature_view.get_batch_data(
