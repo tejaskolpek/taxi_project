@@ -60,8 +60,9 @@ logger.info(
 feature_group = feature_store.get_or_create_feature_group(
     name=config.FEATURE_GROUP_NAME,
     version=config.FEATURE_GROUP_VERSION,
-    primary_key=["pickup_location_id", "pickup_hour"]
-    event_time=["pickup_hour"]
+    description="Time series data at hourly frequency",
+    primary_key=["pickup_location_id", "pickup_hour"],
+    event_time="pickup_hour"
     
 )
 logger.info("Feature group ready.")
