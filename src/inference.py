@@ -145,5 +145,3 @@ def fetch_days_data(days):
     df = query.read()
     cond = (df["pickup_hour"] >= fetch_data_from) & (df["pickup_hour"] <= fetch_data_to)
     return df[cond]
-
-
