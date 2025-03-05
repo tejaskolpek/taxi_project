@@ -35,11 +35,11 @@ feature_group = feature_store.get_feature_group(
     version=config.FEATURE_GROUP_VERSION
 )
 
-feature_store.create_feature_view(
-    name=config.FEATURE_VIEW_NAME,
-    version=config.FEATURE_VIEW_VERSION,
-    query=feature_group.select_all(),
-)
+# feature_store.create_feature_view(
+#     name=config.FEATURE_VIEW_NAME,
+#     version=config.FEATURE_VIEW_VERSION,
+#     query=feature_group.select_all(),
+# )
    
 
 # Retrieve the feature view
