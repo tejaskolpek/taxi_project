@@ -39,15 +39,6 @@ model_schema = ModelSchema(input_schema=input_schema, output_schema=output_schem
 
 model_registry = project.get_model_registry()
 
-model = model_registry.sklearn.create_model(
-    name="taxi_demand_predictor_next_hour",
-    metrics={"test_mae": test_mae},
-    description="LightGBM regressor",
-    input_example=features.sample(),
-    model_schema=model_schema
-)
-model.save('../models/lgb_model.pkl') 
-#######
 pipeline = get_pipeline()
 print(f"Training model ...")
 
@@ -57,6 +48,17 @@ predictions = pipeline.predict(features)
 
 test_mae = mean_absolute_error(targets, predictions)
 metric = load_metrics_from_registry()
+
+
+model = model_registry.sklearn.create_model(
+    name="taxi_demand_predictor_next_hour",
+    metrics={"test_mae": test_mae},
+    description="LightGBM regressor",
+    input_example=features.sample(),
+    model_schema=model_schema
+)
+model.save('../models/lgb_model.pkl') 
+#######
 
 print(f"The new MAE is {test_mae:.4f}")
 print(f"The previous MAE is {metric['test_mae']:.4f}")
