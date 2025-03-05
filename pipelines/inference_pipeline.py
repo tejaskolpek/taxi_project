@@ -23,6 +23,17 @@ print(f"Fetching data from {fetch_data_from} to {fetch_data_to}")
 #     name=config.FEATURE_VIEW_NAME, version=config.FEATURE_VIEW_VERSION,
 # )
 
+import hopsworks
+
+project = hopsworks.login(
+    project=config.HOPSWORKS_PROJECT_NAME, api_key_value=config.HOPSWORKS_API_KEY
+)
+
+feature_store = project.get_feature_store()
+feature_group = feature_store.get_feature_group(
+    name=config.FEATURE_GROUP_NAME,
+    version=config.FEATURE_GROUP_VERSION
+)
 
 feature_store.create_feature_view(
     name=config.FEATURE_VIEW_NAME,
